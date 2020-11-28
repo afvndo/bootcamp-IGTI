@@ -3,40 +3,63 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link type="text/css" rel="stylesheet" href="./css/styles.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="./css/reset.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="./vendor/materialize/css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="./css/styles.css"  media="screen,projection"/>
 
     <title>Pesquisa Programadores v1.0</title>
   </head>
   <body>
-    <div class='container'>
-      <div class='row'>
-        <div class='input-field col s12'>
-          <input id="criterio" type="text">
-          <label for="criterio">Pesquisar por nome</label>
-        </div>
+    <div class="container">
+      <div class="criteria-name input-field">
+        <input id="filterName" type="text">
+        <label for="filterName">Pesquisar por nome</label>
       </div>
-      <div class='row'>
-        <div class='input-field col s12 filters'>
+
+      <div class="criteria">
+        <div class="criteria-lang">
           <label>
-            <input type="checkbox" checked="checked" />
+            <input class="languages" type="checkbox" value="JAVA" checked="checked" />
             <span>Java</span>
           </label>
+
           <label>
-            <input type="checkbox" checked="checked" />
+            <input class="languages" type="checkbox" value="JAVASCRIPT"/>
             <span>JavaScript</span>
           </label>
+
           <label>
-            <input type="checkbox" checked="checked" />
+            <input class="languages"type="checkbox" value="PYTHON"/>
             <span>Python</span>
           </label>
         </div>
+
+        <div class="criteria-condictions">
+          <div>
+            <label>
+              <input class="condiction" type="radio" name="condiction" value="AND" checked="checked" />
+              <span>E</span>
+            </label>
+          </div>
+          <div>
+            <label>
+              <input class="condiction" type="radio" value="OR" name="condiction"/>
+              <span>OU</span>
+            </label>
+          </div>
+        </div>
       </div>
-      <div id='results'>
+
+      <div class='results'>
+        <span class="results-title">
+          <span class="results-title-count">0</span>
+          <span>dev(s) encontrado(s)</span>
+        <div class="results-items" id="results"></div>
       </div>
     </div>
-      <!--JavaScript at end of body for optimized loading-->
+    <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="./vendor/materialize/js/materialize.min.js"></script>
+    <script src="./js/removeAcentos.js"></script>
     <script src="./js/script.js"></script>
   </body>
 </html>
