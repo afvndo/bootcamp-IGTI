@@ -1,0 +1,43 @@
+<mat-toolbar color="primary">
+    <span>Despesas dos senadores (2019) - {{nomeSenador}}</span>
+</mat-toolbar>
+
+<h2>Resumo de despesas</h2>
+<table mat-table [dataSource]="despesasPorTipo">
+    <ng-container matColumnDef="tipo">
+        <th mat-header-cell *matHeaderCellDef> Tipo de despesa </th>
+        <td mat-cell *matCellDef="let despesa"> {{despesa.tipo | descTipo}} </td>
+        <td mat-footer-cell *matFooterCellDef> Total </td>
+    </ng-container>
+    <ng-container matColumnDef="valor">
+        <th mat-header-cell *matHeaderCellDef> Valor </th>
+        <td mat-cell *matCellDef="let despesa"> {{despesa.total | number:'1.2-2'}} </td>
+        <td mat-footer-cell *matFooterCellDef> {{calculaTotal() | number:'1.2-2'}} </td>
+    </ng-container>
+    <tr mat-row *matRowDef="let row; columns: ['tipo', 'valor'];"></tr>
+    <tr mat-footer-row *matFooterRowDef="['tipo', 'valor']"></tr>
+</table>
+
+<h2>Discriminação das despesas</h2>
+<table mat-table [dataSource]="despesas">
+    <ng-container matColumnDef="tipo">
+        <th mat-header-cell *matHeaderCellDef> Tipo de despesa </th>
+        <td mat-cell *matCellDef="let despesa"> {{despesa.tipo | descTipo}} </td>
+    </ng-container>
+    <ng-container matColumnDef="fornec">
+        <th mat-header-cell *matHeaderCellDef> Fornecedor </th>
+        <td mat-cell *matCellDef="let despesa"> {{despesa.fornec}} </td>
+    </ng-container>
+    <ng-container matColumnDef="data">
+        <th mat-header-cell *matHeaderCellDef> Data </th>
+        <td mat-cell *matCellDef="let despesa">
+            {{despesa.dia | number:'2.0-0'}}/{{despesa.mes | number:'2.0-0'}}/{{despesa.ano}} </td>
+    </ng-container>
+    <ng-container matColumnDef="valor">
+        <th mat-header-cell *matHeaderCellDef> Valor </th>
+        <td mat-cell *matCellDef="let despesa"> {{despesa.valor | number:'1.2-2'}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['tipo', 'fornec', 'data', 'valor']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['tipo', 'fornec', 'data', 'valor'];"></tr>
+</table>
